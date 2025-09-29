@@ -49,7 +49,7 @@ export default function Home() {
     );
   }
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     const key = parseInt(name) as keyof FormData;
     setFormData(prev => ({ ...prev, [key]: value }));
@@ -260,14 +260,32 @@ export default function Home() {
               <label className="field-label">
                 المحافظة <span className="field-required">*</span>
               </label>
-              <input
-                type="text"
+              <select
                 name="138"
                 value={formData[138]}
                 onChange={handleInputChange}
                 className={`ui-input w-full ${errors[138] ? 'error' : ''}`}
-                placeholder="أدخل المحافظة"
-              />
+              >
+                <option value="">اختر المحافظة</option>
+                <option value="بغداد">بغداد</option>
+                <option value="البصرة">البصرة</option>
+                <option value="نينوى">نينوى</option>
+                <option value="الأنبار">الأنبار</option>
+                <option value="أربيل">أربيل</option>
+                <option value="كركوك">كركوك</option>
+                <option value="النجف">النجف</option>
+                <option value="كربلاء">كربلاء</option>
+                <option value="بابل">بابل</option>
+                <option value="ميسان">ميسان</option>
+                <option value="القادسية">القادسية</option>
+                <option value="ذي قار">ذي قار</option>
+                <option value="المثنى">المثنى</option>
+                <option value="واسط">واسط</option>
+                <option value="صلاح الدين">صلاح الدين</option>
+                <option value="ديالى">ديالى</option>
+                <option value="دهوك">دهوك</option>
+                <option value="السليمانية">السليمانية</option>
+              </select>
               {errors[138] && <p className="error-message text-sm mt-2">{errors[138]}</p>}
             </div>
           </div>
