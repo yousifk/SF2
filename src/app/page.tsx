@@ -116,7 +116,15 @@ export default function Home() {
       const file = formData[id as keyof FormData] as File | null;
       if (file) {
         const ext = file.name.split('.').pop() || '';
-        const newName = crypto.randomUUID() + (ext ? '.' + ext : '');
+        // استخدام بديل للـ crypto.randomUUID لضمان التوافق مع جميع المتصفحات
+        const generateUUID = () => {
+          return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            const r = Math.random() * 16 | 0;
+            const v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+          });
+        };
+        const newName = generateUUID() + (ext ? '.' + ext : '');
         const newFile = new File([file], newName, { type: file.type });
         formDataToSend.append(id.toString(), newFile);
       }
