@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { writeFile, mkdir } from 'fs/promises';
 import path from 'path';
 import { existsSync } from 'fs';
+import { randomUUID } from 'crypto';
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,7 +24,7 @@ export async function POST(request: NextRequest) {
 
         // إنشاء اسم فريد للملف
         const fileExtension = file.name.split('.').pop() || 'jpg';
-        const fileName = `${crypto.randomUUID()}.${fileExtension}`;
+        const fileName = `${randomUUID()}.${fileExtension}`;
         const filePath = path.join(uploadsDir, fileName);
 
         // حفظ الملف
