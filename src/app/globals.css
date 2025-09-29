@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #10b981; /* emerald-500 */
+  --primary-dark: #059669; /* emerald-600 */
+  --accent: #f59e0b; /* amber-500 */
+  --border-light: #e5e7eb;
+  --bg-app: #f8fafc;
+  --section-bg: linear-gradient(135deg, #10b981 0%, #667eea 100%);
+  --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-mono: 'Courier New', monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Force light theme even in dark OS mode */
+  :root {
+    --background: #ffffff;
+    --foreground: #171717;
+  }
+}
+
+body {
+  /* Force white background regardless of media query */
+  background: #ffffff !important;
+  color: #171717 !important;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  direction: rtl;
+}
+
+/* Ensure root background is also white */
+html {
+  background: #ffffff !important;
+}
+
+/* Custom Classes for the Form UI */
+
+/* Background gradient for app */
+.bg-app {
+  background: #f8fafc !important;
+}
+
+/* Section headers */
+.section-header {
+  background: var(--section-bg);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.section-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: inherit;
+}
+
+/* Form section */
+.form-section {
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Field groups */
+.field-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Field labels */
+.field-label {
+  display: block;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.field-required {
+  color: #ef4444;
+  margin-right: 0.25rem;
+}
+
+/* UI Inputs */
+.ui-input, .ui-textarea {
+  border: 2px solid #d1d5db;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.ui-input:focus, .ui-textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  transform: translateY(-1px);
+}
+
+.ui-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Error states */
+.error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.error-message {
+  color: #ef4444;
+  font-weight: 500;
+}
+
+/* Primary button */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border: none;
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Loading spinner */
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Bounce animations */
+.animate-bounce-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.animate-bounce-delay-2 {
+  animation-delay: 0.2s;
+}
+
+/* Fade in animation */
+.fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .ui-input, .ui-textarea {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.95rem;
+  }
+  
+  .btn-primary {
+    padding: 0.875rem 1.5rem;
+    font-size: 1.1rem;
+  }
+}
